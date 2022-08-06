@@ -1,0 +1,92 @@
+ext.projectDependencies = [
+        appcompat                       : "androidx.appcompat:appcompat:$versions.appcompatVersion",
+        supportDesign                   : "com.google.android.material:material:$versions.material",
+        recyclerview                    : "androidx.recyclerview:recyclerview:$versions.recyclerview",
+        constraintLayout                : "androidx.constraintlayout:constraintlayout:$versions.constraintLayoutVersion",
+        multidex                        : "androidx.multidex:multidex:$versions.multidexVersion",
+        androidxCoreKtx                 : "androidx.core:core-ktx:$versions.androidxCoreKtx",
+        fragmentKtx                     : "androidx.fragment:fragment-ktx:$versions.fragmentKtx",
+        lifecycleExtensions             : "androidx.lifecycle:lifecycle-extensions:$versions.lifecycleVersion",
+        livedataKtx                     : "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycleVersion",
+        viewModelKtx                    : "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycleVersion",
+        lifecycleRuntimeKtx             : "androidx.lifecycle:lifecycle-runtime-ktx:$versions.lifecycleVersion",
+        activityKtx                     : "androidx.activity:activity-ktx:$versions.activityKtx",
+        lifeCycleRuntimeKtx             : "androidx.lifecycle:lifecycle-runtime-ktx:$versions.lifeCycleRuntimeKtx",
+
+        coroutinesAndroid               : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutinesVersion",
+        coroutinesCore                  : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutinesVersion",
+
+        room                            : "androidx.room:room-runtime:$versions.room",
+        roomAnnotationProcessor         : "androidx.room:room-compiler:$versions.room",
+        roomKtx                         : "androidx.room:room-ktx:$versions.room",
+
+// Unit test support
+        jUnit                           : "junit:junit:$versions.jUnit",
+// Mocking framework to mock and verify calls.
+        mockito                         : "org.mockito:mockito-core:$versions.mockito",
+
+//test
+        testRunner                      : "androidx.test:runner:$versions.testRunnerVersion",
+        espressoCore                    : "androidx.test.espresso:espresso-core:$versions.espressoVersion",
+
+// Logging library
+        timber                          : "com.jakewharton.timber:timber:$versions.timber",
+
+// Dagger dependency injection - Includes android specific components
+        daggerAnnotationProcessor       : "com.google.dagger:dagger-compiler:$versions.dagger",
+        dagger                          : "com.google.dagger:dagger:$versions.dagger",
+        daggerAndroid                   : "com.google.dagger:dagger-android-support:$versions.dagger",
+        daggerAndroidAnnotationProcessor: "com.google.dagger:dagger-android-processor:$versions.dagger",
+
+// Retrofit networking
+        retrofit                        : "com.squareup.retrofit2:retrofit:$versions.retrofit",
+        retrofitGson                    : "com.squareup.retrofit2:converter-gson:$versions.retrofit",
+        okhttpLoggingInterceptor        : "com.squareup.okhttp3:logging-interceptor:$versions.loggingInterceptor",
+        retrofitRxJava2Adapter          : "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit",
+
+// Retrofit mock mode for simulating network responses. See https://youtu.be/t34AQlblSeE?t=53m32s
+        retrofitMockMode                : "com.squareup.retrofit2:retrofit-mock:$versions.retrofit",
+
+// RxJava
+        rxAndroid                       : "io.reactivex.rxjava2:rxandroid:$versions.rxAndroid",
+        rxJava2                         : "io.reactivex.rxjava2:rxjava:$versions.rxJava",
+
+// Image loading
+        glideImageLoading               : "com.github.bumptech.glide:glide:$versions.glide",
+        glideAnnotationProcessor        : "com.github.bumptech.glide:compiler:$versions.glide",
+
+// Stetho debug bridge through google chrome console
+        stetho                          : "com.facebook.stetho:stetho:$versions.stetho",
+
+//leakcanary
+        leakcanary_android              : "com.squareup.leakcanary:leakcanary-android:$versions.leakcanary",
+        leakcanary_android_no_op        : "com.squareup.leakcanary:leakcanary-android-no-op:$versions.leakcanary",
+        leakcanary_support_fragment     : "com.squareup.leakcanary:leakcanary-support-fragment:$versions.leakcanary",
+
+//BaseRecyclerViewAdapterHelper
+        BaseRecyclerViewAdapterHelper   : "com.github.CymChad:BaseRecyclerViewAdapterHelper:$versions.BRVAH",
+//下拉刷新及上拉加载更多控件
+        SmartRefreshLayout              : "com.scwang.smartrefresh:SmartRefreshLayout:$versions.SmartRefresh",
+        SmartRefreshHeader              : "com.scwang.smartrefresh:SmartRefreshHeader:$versions.SmartRefresh",
+//greendao
+        greendao                        : "org.greenrobot:greendao:$versions.greendao",
+//eventbus
+        eventbus                        : "org.greenrobot:eventbus:$versions.eventbus",
+//rxBinding
+        rxBinding                       : "com.jakewharton.rxbinding2:rxbinding:$versions.rxBinding",
+// 缩放控件photoview
+        photoview                       : "com.bm.photoview:library:$versions.photoview",
+//zxing
+        zxing                           : "com.google.zxing:core:$versions.zxing",
+        zxingandroidembedded            : "com.journeyapps:zxing-android-embedded:$versions.zxingandroidembedded",
+//easypermissions
+        easypermissions                 : "pub.devrel:easypermissions:$versions.easypermissions",
+// PictureSelector
+        PictureSelector                 : "com.github.LuckSiege.PictureSelector:picture_library:$versions.PictureSelector",
+//  aliyunOss
+        aliyunOss                       : "com.aliyun.dpa:oss-android-sdk:$versions.aliyunOss",
+// https://github.com/hdodenhof/CircleImageView
+        circleimageview                 : "de.hdodenhof:circleimageview:$versions.circleimageview",
+        androidpickerView               : "com.contrarywind:Android-PickerView:$versions.androidpickerView"
+
+]

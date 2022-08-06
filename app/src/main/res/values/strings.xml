@@ -1,0 +1,10 @@
+<resources>
+    <string name="title_home">Home</string>
+    <string name="title_me">Me</string>
+    <string name="title_board">Board</string>
+    <string name="cd_home">Home</string>
+    <string name="cd_board">Board</string>
+    <string name="cd_me">Form</string>
+    <string name="FirstChild">FirstChild</string>
+    <string name="SecondChild">SecondChild</string>
+</resources>
