@@ -1,0 +1,6 @@
+String[] entities = [
+        "china",
+        "hongkong"
+]
+
+ext.entities = entities

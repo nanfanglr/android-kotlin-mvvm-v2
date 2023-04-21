@@ -1,0 +1,50 @@
+enum Lib {
+    FUNDS('funds'),
+    STOCK('stock'),
+
+    public final String sourceSetName
+
+    Lib(String sourceSetName) {
+        this.sourceSetName = sourceSetName
+    }
+}
+
+static def addLibsSources(String entity, List<Lib> libs, sourceSets) {
+    def included = Lib.values().toList().intersect(libs)
+    def excluded = Lib.values().toList() - included
+    def sourceSet = sourceSets.findByName(entity)
+    def testSourceSet = sourceSets.findByName("test${entity.capitalize()}")
+
+    for (lib in included) {
+        sourceSet.java.srcDirs += "src/libs/${lib.sourceSetName}/with/main/java"
+        sourceSet.res.srcDirs += "src/libs/${lib.sourceSetName}/with/main/res"
+        testSourceSet.java.srcDirs += "src/libs/${lib.sourceSetName}/with/main/java"
+    }
+
+    for (lib in excluded) {
+        sourceSet.java.srcDirs += "src/libs/${lib.sourceSetName}/without/main/java"
+        testSourceSet.java.srcDirs += "src/libs/${lib.sourceSetName}/without/test/java"
+    }
+}
+
+
+android {
+    sourceSets { container ->
+        china {
+            ArrayList libs = new ArrayList<>([Lib.FUNDS])
+            addLibsSources(name, libs, container)
+        }
+
+        hongkong {
+            ArrayList libs = new ArrayList<>([Lib.STOCK])
+            addLibsSources(name, libs, container)
+        }
+    }
+}
+
+dependencies{
+
+    chinaImplementation "de.hdodenhof:circleimageview:3.1.0"
+
+    hongkongImplementation "com.contrarywind:Android-PickerView:4.1.9"
+}

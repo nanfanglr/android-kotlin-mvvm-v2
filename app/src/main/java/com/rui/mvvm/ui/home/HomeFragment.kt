@@ -41,7 +41,6 @@ class HomeFragment : BaseDaggerFragment<FragmentHomeBinding, HomeViewModel>() {
         //Please learn more from https://cloud.tencent.com/developer/article/1820734
         val tabLayout = binding.tabs
         val viewPager = binding.viewPager
-
         viewPager.adapter = HomePagerAdapter(this)
 
         // Set the icon and text for each tab

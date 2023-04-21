@@ -1,0 +1,12 @@
+android {
+    productFlavors {
+        china {
+            resConfigs 'en_CN','zh_CN'
+            dimension 'region'
+        }
+        hongkong {
+            resConfigs 'en_CN','zh_CN'
+            dimension 'region'
+        }
+    }
+}

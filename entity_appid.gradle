@@ -1,0 +1,34 @@
+enum AppId {
+    CHINA("com.rui.mvvm.china"),
+    HONGKONG("com.rui.mvvm.hongkong")
+
+    private final static String CERT_SUFFIX = ".cert"
+    private final static String PRODUCTION_SUFFIX = ""
+
+    public final String appId
+    public final String certSuffix
+    public final String productionSuffix
+
+    AppId(String appId, String certSuffix = CERT_SUFFIX, String productionSuffix = PRODUCTION_SUFFIX) {
+        this.appId = appId
+        this.certSuffix = certSuffix
+        this.productionSuffix = productionSuffix
+    }
+}
+
+
+android.applicationVariants.all { variant ->
+    def regionName = variant.productFlavors[0].name.toUpperCase()
+    def environmentName = variant.productFlavors[1].name
+    def appIdEntity = AppId.valueOf(regionName)
+    def applicationId = appIdEntity.appId
+    String buildType = variant.buildType.name
+
+    if (environmentName == "cert") {
+        applicationId += appIdEntity.certSuffix
+    } else if(environmentName == "production") {
+        applicationId += appIdEntity.productionSuffix
+    }
+    println("rui applicationId = ${applicationId}")
+    variant.mergedFlavor.setApplicationId(applicationId)
+}

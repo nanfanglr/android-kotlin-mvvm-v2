@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+cd ../
+
+version=2.0
+echo "Publishing xxx lib local release $version"
+./gradlew :xxx:uploadArchives -PmavenLocal -PlocalVersion=$version

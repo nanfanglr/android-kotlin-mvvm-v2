@@ -52,6 +52,8 @@ class FirstChildFragment : BaseDaggerFragment<FragmentFirstChildBinding, FirstCh
          * https://mp.weixin.qq.com/s/o2bu9Fl2UMnXgs6BIb-0KQ
          * https://mp.weixin.qq.com/s/BICq06PTlseX60my9KWpSw
          * https://segmentfault.com/a/1190000041683454?utm_source=sf-similar-article
+         * https://www.jianshu.com/p/5392573692ba
+         * https://blog.csdn.net/androiddevs/article/details/119951992
          */
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {

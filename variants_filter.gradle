@@ -1,0 +1,74 @@
+apply from: "$rootDir/entities.gradle"
+apply from: "$rootDir/get_entity.gradle"
+
+ext.disableVariants = ['ProductionInsecure', 'InsecureRelease']
+
+ext.filterVariants = { variant ->
+    String entity = getEntityFromLocalProps()
+    if (entity == null || entity.isEmpty() || entity.equalsIgnoreCase("all")) {
+        checkIfEntityISRequiredForCurrentTask()
+    } else {
+        checkEntityValid(entity)
+    }
+    if (!entity.equalsIgnoreCase("all")) {
+        filter(entity, variant)
+    }
+}
+
+private void checkEntityValid(String entity) {
+    if (!project.entities.contains(entity)) {
+        throw new GradleException("entity = ${entity} is inccrect,please check")
+    }
+}
+
+private void checkIfEntityISRequiredForCurrentTask() {
+    def task = project.gradle.startParameter.taskNames.find() ?: ""
+    def exclusions = ["clean", "lint", "test", "compile", "validate", "dependencies", "checkCopy", "permissionCOnfluencePage"]
+    def taskRequiresEntity = false
+
+    if (!task.isEmpty()) {
+        taskRequiresEntity = !exclusions.any { task.contains(it) }
+    }
+    if (taskRequiresEntity) {
+        throw new GradleException("task:${task} can not run,please check if the entity config is correct")
+    }
+}
+
+private void filter(String entity, variant) {
+    def variantEntity = variant.flavors[0]?.name ?: " "
+    String environmentEntity = variant.flavors[1]?.name ?: " "
+    def variantName = variant.name
+    String env = getEnvironmentFromLocalProps()
+
+    try {
+        if (variantEntity.equalsIgnoreCase(entity)) {
+            if (env != null
+                    && !env.isEmpty()
+                    && project.name.equalsIgnoreCase("app")
+                    && !environmentEntity.equalsIgnoreCase(env)) {
+                variant.setIgnore(true)
+            }
+        } else {
+            variant.setIgnore(true)
+        }
+    } catch (e) {
+        println(e)
+    } finally {
+        disableVariants.any { disabled ->
+            if (variant.name.contains(disabled)) {
+                variant.setIgnore(true)
+            }
+        }
+
+        def requestedTasks = project.gradle.startParameter.taskNames
+        requestedTasks.each {
+            if (it.toLowerCase().contains(variantName.toLowerCase())) {
+                variant.setIgnore(false)
+            }
+        }
+
+        if (variant.flavors.isEmpty()) {
+            variant.setIgnore(false)
+        }
+    }
+}

@@ -1,0 +1,33 @@
+private Properties loadLocalProperties() {
+    Properties localProps = new Properties()
+    def localPropertyFile = new File("$rootDir/local.properties")
+    try {
+        localProps.load(localPropertyFile.newDataInputStream())
+    } catch (FileNotFoundException ignored) {
+        throw new GradleException("local.properties file missing in the project")
+    }
+    return localProps
+}
+
+private String getEntityFromLocalProps() {
+    Properties localProps = loadLocalProperties()
+    String entity = localProps.getProperty("ENTITY")
+    if (entity == null || entity.isEmpty()) {
+        throw new GradleException("entity can not be null or empty in local.properties file")
+    }
+    return entity.toLowerCase()
+}
+
+private String getEnvironmentFromLocalProps() {
+    Properties localProps = loadLocalProperties()
+    String entity = localProps.getProperty("ENVIRONMENT")
+    if (entity == null || entity.isEmpty()) {
+        throw new GradleException("environment can not be null or empty in local.properties file")
+    }
+    return entity.toLowerCase()
+}
+
+ext {
+    getEntityFromLocalProps = this.&getEntityFromLocalProps
+    getEnvironmentFromLocalProps = this.&getEnvironmentFromLocalProps
+}

@@ -17,7 +17,6 @@ class FirstChildViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _topArticlesLiveData = MutableLiveData<List<TopArticleBean>>()
-
     //if use liveData no.1
     val topArticlesLiveData: LiveData<List<TopArticleBean>> = _topArticlesLiveData
     //if use liveData no.2

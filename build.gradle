@@ -18,13 +18,22 @@ buildscript {
     }
 }
 
+subprojects { subproject ->
+    pluginManager.withPlugin("com.android.application") {
+        project.apply from: "$rootDir/variants_filter.gradle"
+        android.variantFilter { filterVariants(it) }
+    }
+    pluginManager.withPlugin("com.android.library") {
+        project.apply from: "$rootDir/variants_filter.gradle"
+        android.variantFilter { filterVariants(it) }
+    }
+}
+
 allprojects {
     repositories {
-        mavenLocal()
         maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
         google()
         maven { url "https://jitpack.io" }
-
     }
 }
 

@@ -1,6 +1,12 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+apply from: '../entity_appid.gradle'
+apply from: '../region_flavors.gradle'
+apply from: '../environment_flavors.gradle'
+apply from: '../build_type_flavors.gradle'
+apply from: '../get_entity.gradle'
+apply from: '../lib_implementations.gradle'
 
 android {
     compileSdkVersion versions.compileSdkVersion
@@ -9,15 +15,13 @@ android {
     def versionPatch = 0
 
     defaultConfig {
-        applicationId "com.rui.chuanyutang"
+        applicationId "com.rui.kotlinmvvmv2"
         minSdkVersion versions.minSdkVersion
         targetSdkVersion versions.targetSdkVersion
 
         versionCode versionMajor * 10000 + versionMinor * 100 + versionPatch
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-        flavorDimensions "default"
     }
 
     signingConfigs {
@@ -36,7 +40,7 @@ android {
             zipAlignEnabled true
             multiDexEnabled true
             shrinkResources true    // 移除无用的resource文件
-            resValue "string", "app_name", "ChuanYuTang"
+            resValue "string", "app_name", "KotlinMvvm"
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
@@ -46,16 +50,13 @@ android {
             minifyEnabled false
             zipAlignEnabled true
 //            shrinkResources true    // 移除无用的resource文件
-            resValue "string", "app_name", "ChuanYuTang"
+            resValue "string", "app_name", "KotlinMvvm"
 //            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             multiDexEnabled true
         }
     }
 
-    productFlavors {
-        product {}
-        cert {}
-    }
+    flavorDimensions 'region', 'environment', 'type'
 
     applicationVariants.all { variant ->
         variant.outputs.all { output ->
@@ -96,7 +97,9 @@ android {
 }
 
 dependencies {
-
+    println("rui name = ${name}")
+    println("rui entity = ${getEntityFromLocalProps()}")
+    println("rui env = ${getEnvironmentFromLocalProps()}")
     implementation project(':base')
     implementation project(':retrofit2')
     implementation project(':image-loader')
